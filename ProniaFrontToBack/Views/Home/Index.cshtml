@@ -2,7 +2,8 @@
 @{
   Layout = "_Layout";
 }
-
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
 
 
 @model HomeVM
@@ -137,8 +138,10 @@
                 <div class="col-xl-3 col-md-4 col-sm-6">
                   <div class="product-item">
                     <div class="product-img">
-                      <a href="shop.html">
-                        <img class="primary-img" src="~/assets/images/website-images//@item.Image" alt="Product Images" />
+                      <a asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id">
+                        <img class="primary-img"
+                          src="~/assets/images/website-images//@item.Images.FirstOrDefault(x => x.IsPrimary)?.Url"
+                          alt="Product Images" />
                         <img class="secondary-img" src="~/assets/images/website-images//1-2-270x300.jpg"
                           alt="Product Images" />
                       </a>

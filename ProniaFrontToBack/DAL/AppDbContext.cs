@@ -14,6 +14,7 @@ namespace ProniaFrontToBack.DAL
         public DbSet<Image> Images { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Slider> Sliders { get; set; }
+        public DbSet<Review> Reviews { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
     }

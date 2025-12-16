@@ -63,14 +63,32 @@ namespace ProniaFrontToBack.Controllers
 
                   return View(homeVM);
             }
-
             public IActionResult Detail(int id)
             {
                   var product = _db.Products
                   .Include(p => p.Images)
+                  .Include(p => p.Reviews)
+                  .Include(p => p.Categories)
+                  .Include(p => p.Tags)
                   .FirstOrDefault(p => p.Id == id);
 
-                  return View(product);
+                  var categoryIds = product.Categories.Select(c => c.Id).ToList();
+
+                  var relatedProducts = _db.Products
+                      .Include(p => p.Images)
+                      .Include(p => p.Categories)
+                      .Where(p => p.Categories.Any(c => categoryIds.Contains(c.Id)) && p.Id != product.Id)
+                      .Distinct()
+                      .Take(2)
+                      .ToList();
+
+                  DetailVM detailVM = new DetailVM
+                  {
+                        Product = product,
+                        Products = relatedProducts
+                  };
+
+                  return View(detailVM);
             }
       }
 }

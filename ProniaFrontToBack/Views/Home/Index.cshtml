@@ -1,20 +1,9 @@
-@using ProniaFrontToBack.ViewModels
-@{
-  Layout = "_Layout";
-}
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@addTagHelper *, AuthoringTagHelpers
-
-
 @model HomeVM
-
 <!-- Begin Slider Area -->
 <div class="slider-area">
   <!-- Main Slider -->
   <div class="swiper-container main-slider swiper-arrow with-bg_white">
     <div class="swiper-wrapper">
-
-
       @foreach (var slider in Model.Sliders)
       {
         <div class="swiper-slide animation-style-01">

@@ -39,3 +39,11 @@ build_metadata.AdditionalFiles.CssScope =
 [/Users/rashad/Desktop/BPA202-FrontToBack-Intro/ProniaFrontToBack/Views/Shared/_layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19sYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/rashad/Desktop/BPA202-FrontToBack-Intro/ProniaFrontToBack/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/rashad/Desktop/BPA202-FrontToBack-Intro/ProniaFrontToBack/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

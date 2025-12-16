@@ -9,6 +9,7 @@ namespace ProniaFrontToBack.Models
         public decimal Price { get; set; }
         public decimal Rating { get; set; }
         public string SKU { get; set; }
+        public List<Review> Reviews { get; set; }
         public List<Image> Images { get; set; }
         public List<Category> Categories { get; set; }
         public List<Tag> Tags { get; set; }

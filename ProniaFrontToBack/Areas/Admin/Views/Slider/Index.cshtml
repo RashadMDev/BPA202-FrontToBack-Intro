@@ -13,7 +13,7 @@
       <div class="card shadow mb-4">
             <div class="card-header py-3">
                   <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
-                  <a class="btn btn-primary">Create</a>
+                  <a asp-area="Admin" asp-controller="Slider" asp-action="Create" class="btn btn-primary">Create</a>
             </div>
             <div class="card-body">
                   <div class="table-responsive">
@@ -46,10 +46,12 @@
                                                 <td>@slider.DiscountRate</td>
                                                 <td>@slider.IsDeleted</td>
                                                 <td>
-                                                      <button class="btn btn-danger">Delete</button>
+                                                      <a asp-area="Admin" asp-controller="Slider" asp-action="Delete"
+                                                            asp-route-id="@slider.Id" class="btn btn-danger">Delete</a>
                                                 </td>
                                                 <td>
-                                                      <p class="btn btn-warning">Update</p>
+                                                      <a asp-area="Admin" asp-controller="Slider" asp-action="Update"
+                                                            asp-route-id="@slider.Id" class="btn btn-warning">Update</a>
                                                 </td>
                                           </tr>
                                           counter++;

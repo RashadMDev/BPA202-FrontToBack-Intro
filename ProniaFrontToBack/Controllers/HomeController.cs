@@ -13,6 +13,7 @@ namespace ProniaFrontToBack.Controllers
             {
                   _db = context;
             }
+            #region Index
             public IActionResult Index()
             {
                   List<Slider> sliders = _db.Sliders.ToList();
@@ -28,6 +29,8 @@ namespace ProniaFrontToBack.Controllers
 
                   return View(homeVM);
             }
+            #endregion
+            #region Detail
             public IActionResult Detail(int id)
             {
                   var product = _db.Products
@@ -57,5 +60,6 @@ namespace ProniaFrontToBack.Controllers
 
                   return View(detailVM);
             }
+            #endregion
       }
 }

@@ -17,17 +17,22 @@ namespace ProniaFrontToBack.Areas.Admin.Controllers
             _env = env;
         }
 
+        #region Index
         public IActionResult Index()
         {
             List<Slider> sliders = _db.Sliders.ToList();
             return View(sliders);
         }
+        #endregion
 
 
+        #region Create (GET)
         public IActionResult Create()
         {
             return View();
         }
+        #endregion
+        #region Create (POST)
         [HttpPost]
         public IActionResult Create(Slider slider)
         {
@@ -49,8 +54,10 @@ namespace ProniaFrontToBack.Areas.Admin.Controllers
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
+        #endregion
 
 
+        #region Delete
         public IActionResult Delete(int? id)
         {
             if (id == null) return NotFound();
@@ -61,8 +68,10 @@ namespace ProniaFrontToBack.Areas.Admin.Controllers
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
+        #endregion
 
 
+        #region Update (GET)
         public IActionResult Update(int? id)
         {
             if (id == null) return NotFound();
@@ -70,6 +79,8 @@ namespace ProniaFrontToBack.Areas.Admin.Controllers
             if (slider == null) return NotFound();
             return View(slider);
         }
+        #endregion
+        #region Update (POST)
         [HttpPost]
         public IActionResult Update(Slider newSlider)
         {
@@ -85,5 +96,6 @@ namespace ProniaFrontToBack.Areas.Admin.Controllers
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
+        #endregion
     }
 }

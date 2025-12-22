@@ -1,22 +1,29 @@
 using Microsoft.AspNetCore.Mvc;
 using ProniaFrontToBack.DAL;
 using ProniaFrontToBack.Models;
+using ProniaFrontToBack.Utilities.ImageUpload;
 
 namespace ProniaFrontToBack.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class SliderController : Controller
     {
-        AppDbContext _db;
-        public SliderController(AppDbContext context)
+        private readonly AppDbContext _db;
+        private readonly IWebHostEnvironment _env;
+
+        public SliderController(AppDbContext context, IWebHostEnvironment env)
         {
             _db = context;
+            _env = env;
         }
+
         public IActionResult Index()
         {
             List<Slider> sliders = _db.Sliders.ToList();
             return View(sliders);
         }
+
+
         public IActionResult Create()
         {
             return View();
@@ -24,21 +31,38 @@ namespace ProniaFrontToBack.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Create(Slider slider)
         {
+            if (!slider.ImageFile.ContentType.Contains("image/"))
+            {
+                ModelState.AddModelError("ImageFile", "File type must be image");
+                return View();
+            }
+            if (slider.ImageFile.Length > 2 * 1024 * 1024)
+            {
+                ModelState.AddModelError("ImageFile", "Image size must be max 2MB");
+                return View();
+            }
+            var fileName = slider.ImageFile.SaveImage(_env, "Uploads/Slider");
+            slider.Image = fileName;
             if (!ModelState.IsValid) return View();
             if (slider == null) return NotFound();
             _db.Sliders.Add(slider);
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+
         public IActionResult Delete(int? id)
         {
             if (id == null) return NotFound();
             Slider slider = _db.Sliders.FirstOrDefault(item => item.Id == id);
             if (slider == null) return NotFound();
+            slider.Image?.DeleteImage(_env, "Uploads/Slider");
             _db.Sliders.Remove(slider);
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+
         public IActionResult Update(int? id)
         {
             if (id == null) return NotFound();

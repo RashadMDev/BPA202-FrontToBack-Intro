@@ -2,7 +2,7 @@
 
 <div class="container">
       <h1>Create Slider</h1>
-      <form asp-action="Create" method="post">
+      <form asp-action="Create" method="post" enctype="multipart/form-data">
             <div class="form-group">
                   <label for="NameInput">Name</label>
                   <input asp-for="Name" type=" text" class="form-control" id="NameInput" placeholder="Enter Name">
@@ -17,8 +17,8 @@
             </div>
             <div class="form-group">
                   <label for="ImageInput">Image</label>
-                  <input asp-for="Image" type=" text" class="form-control" id="ImageInput" placeholder="Enter Image">
-                  <span asp-validation-for="Image" class="text-danger"></span>
+                  <input asp-for="ImageFile" type="file" class="form-control" id="ImageInput" placeholder="Enter Image">
+                  <span asp-validation-for="ImageFile" class="text-danger"></span>
             </div>
             <div class="form-group">
                   <label for="DiscountRateInput">Discount Rate</label>

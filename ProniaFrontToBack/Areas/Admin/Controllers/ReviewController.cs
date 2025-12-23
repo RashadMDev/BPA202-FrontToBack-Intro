@@ -23,7 +23,7 @@ namespace ProniaFrontToBack.Areas.Admin.Controllers
         }
         #endregion
 
-        #region Create Get
+        #region Create (GET)
         public IActionResult Create()
         {
             ViewBag.Products = _db.Products.ToList();
@@ -31,7 +31,7 @@ namespace ProniaFrontToBack.Areas.Admin.Controllers
         }
         #endregion
 
-        #region Create Post
+        #region Create (POST)
         [HttpPost]
         public async Task<IActionResult> Create(CreateReviewVM reviewVM)
         {
@@ -49,31 +49,40 @@ namespace ProniaFrontToBack.Areas.Admin.Controllers
             await _db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
-
         #endregion
+
+        #region Soft Delete
         [HttpPost]
         public async Task<IActionResult> Delete(int? id)
         {
+            if (id == null) return View("Error");
             var review = await _db.Reviews.FirstOrDefaultAsync(r => r.Id == id);
-            if (review == null) return NotFound();
+            if (review == null) return View("Error");
             review.IsDeleted = true;
             await _db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
+        #endregion
+
+        #region Restore
         [HttpPost]
         public async Task<IActionResult> Restore(int? id)
         {
+            if (id == null) return View("Error");
             var review = await _db.Reviews.FirstOrDefaultAsync(r => r.Id == id);
-            if (review == null) return NotFound();
+            if (review == null) return View("Error");
             review.IsDeleted = false;
             await _db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
+        #endregion
 
+        #region Update (GET)
         public async Task<IActionResult> Update(int? id)
         {
+            if (id == null) return View("Error");
             var review = await _db.Reviews.FirstOrDefaultAsync(r => r.Id == id);
-            if (review == null) return NotFound();
+            if (review == null) return View("Error");
             ViewBag.Products = _db.Products.ToList();
             UpdateReviewVM reviewVM = new UpdateReviewVM()
             {
@@ -83,7 +92,9 @@ namespace ProniaFrontToBack.Areas.Admin.Controllers
             };
             return View(reviewVM);
         }
+        #endregion
 
+        #region Update (POST)
         [HttpPost]
         public async Task<IActionResult> Update(UpdateReviewVM reviewVM)
         {
@@ -93,12 +104,12 @@ namespace ProniaFrontToBack.Areas.Admin.Controllers
                 return View(reviewVM);
             }
             var review = await _db.Reviews.FirstOrDefaultAsync(r => r.Id == reviewVM.Id);
-            if (review == null) return NotFound();
+            if (review == null) return View("Error");
             review.Comment = reviewVM.Comment;
             review.ProductId = reviewVM.ProductId;
             await _db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
-
+        #endregion
     }
 }

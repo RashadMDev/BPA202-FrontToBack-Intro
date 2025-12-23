@@ -16,7 +16,10 @@ namespace ProniaFrontToBack.Controllers
             #region Index
             public IActionResult Index()
             {
-                  List<Slider> sliders = _db.Sliders.ToList();
+                  List<Slider> sliders = _db.Sliders
+                  .Where(s => !s.IsDeleted)
+                  .ToList();
+
                   List<Product> products = _db.Products
                   .Include(p => p.Images)
                   .ToList();
@@ -30,6 +33,7 @@ namespace ProniaFrontToBack.Controllers
                   return View(homeVM);
             }
             #endregion
+
             #region Detail
             public IActionResult Detail(int? id)
             {

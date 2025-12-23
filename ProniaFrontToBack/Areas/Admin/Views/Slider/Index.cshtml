@@ -43,10 +43,29 @@
                                                 </td>
                                                 <td>@slider.Description</td>
                                                 <td>@slider.DiscountRate</td>
-                                                <td>@slider.IsDeleted</td>
+                                                @if (slider.IsDeleted)
+                                                {
+                                                      <td class="text-danger">Deleted</td>
+                                                }
+                                                else
+                                                {
+                                                      <td class="text-success">Active</td>
+                                                }
                                                 <td>
-                                                      <a asp-area="Admin" asp-controller="Slider" asp-action="Delete"
-                                                            asp-route-id="@slider.Id" class="btn btn-danger">Delete</a>
+                                                      @if (!slider.IsDeleted)
+                                                      {
+                                                            <form method="post" asp-area="Admin" asp-controller="Slider"
+                                                                  asp-action="Delete" asp-route-id="@slider.Id">
+                                                                  <button type="submit" class="btn btn-danger">Delete</button>
+                                                            </form>
+                                                      }
+                                                      else
+                                                      {
+                                                            <form method="post" asp-area="Admin" asp-controller="Slider"
+                                                                  asp-action="Restore" asp-route-id="@slider.Id">
+                                                                  <button type="submit" class="btn btn-success">Restore</button>
+                                                            </form>
+                                                      }
                                                 </td>
                                                 <td>
                                                       <a asp-area="Admin" asp-controller="Slider" asp-action="Update"

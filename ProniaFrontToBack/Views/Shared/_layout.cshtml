@@ -89,7 +89,7 @@
                   <a href="tel://+00-123-456-789">+00 123 456 789</a>
                 </div>
 
-                <a href="index.html" class="header-logo">
+                <a asp-controller="Home" asp-action="Index" class="header-logo">
                   <img src="~/assets/images/logo/dark.png" alt="Header Logo" />
                 </a>
 
@@ -146,15 +146,7 @@
                 <nav class="main-nav">
                   <ul>
                     <li class="drop-holder">
-                      <a href="index.html">Home</a>
-                      <ul class="drop-menu">
-                        <li>
-                          <a href="index.html">Home One</a>
-                        </li>
-                        <li>
-                          <a href="index-2.html">Home Two</a>
-                        </li>
-                      </ul>
+                      <a asp-controller="Home" asp-action="Index">Home</a>
                     </li>
                     <li class="megamenu-holder">
                       <a href="shop.html">Shop</a>
@@ -270,7 +262,7 @@
           <div class="header-nav position-relative">
             <div class="row align-items-center">
               <div class="col-lg-3 col-6">
-                <a href="index.html" class="header-logo">
+                <a asp-controller="Home" asp-action="Index" class="header-logo">
                   <img src="~/assets/images/logo/dark.png" alt="Header Logo" />
                 </a>
               </div>
@@ -279,15 +271,7 @@
                   <nav class="main-nav">
                     <ul>
                       <li class="drop-holder">
-                        <a href="index.html">Home</a>
-                        <ul class="drop-menu">
-                          <li>
-                            <a href="index.html">Home One</a>
-                          </li>
-                          <li>
-                            <a href="index-2.html">Home Two</a>
-                          </li>
-                        </ul>
+                        <a asp-controller="Home" asp-action="Index">Home</a>
                       </li>
                       <li class="megamenu-holder">
                         <a href="shop.html">Shop</a>
@@ -499,23 +483,11 @@
               <nav class="offcanvas-navigation">
                 <ul class="mobile-menu">
                   <li class="menu-item-has-children">
-                    <a href="#">
+                    <a asp-controller="Home" asp-action="Index">
                       <span class="mm-text">Home
                         <i class="pe-7s-angle-down"></i>
                       </span>
                     </a>
-                    <ul class="sub-menu">
-                      <li>
-                        <a href="index.html">
-                          <span class="mm-text">Home One</span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="index-2.html">
-                          <span class="mm-text">Home Two</span>
-                        </a>
-                      </li>
-                    </ul>
                   </li>
                   <li class="menu-item-has-children">
                     <a href="#">
@@ -796,8 +768,7 @@
     <!-- Main Header Area End Here -->
 
 
-@RenderBody()
-
+    @RenderBody()
 
 
     <!-- Begin Footer Area -->
@@ -808,7 +779,7 @@
             <div class="col-lg-3">
               <div class="footer-widget-item">
                 <div class="footer-widget-logo">
-                  <a href="index.html">
+                  <a asp-controller="Home" asp-action="Index">
                     <img src="~/assets/images/logo/dark.png" alt="Logo" />
                   </a>
                 </div>

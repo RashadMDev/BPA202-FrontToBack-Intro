@@ -1,0 +1,24 @@
+@model ProniaFrontToBack.Areas.Admin.ViewModels.Review.UpdateReviewVM
+
+<div class="container">
+      <h1>Update Review</h1>
+      <form asp-action="Update" method="post">
+            <div class="form-group">
+                  <label asp-for="Comment">Comment</label>
+                  <input asp-for="Comment" type=" text" class="form-control" placeholder="Enter Comment" id="Comment">
+                  <span asp-validation-for="Comment" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                  <label asp-for="ProductId">Example select</label>
+                  <select asp-for="ProductId" class="form-control">
+                        @foreach (Product product in ViewBag.Products)
+                        {
+                              <option value="@product.Id">@product.Name</option>
+                        }
+
+                  </select>
+                  <span asp-validation-for="ProductId" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+</div>

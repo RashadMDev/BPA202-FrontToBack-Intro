@@ -4,7 +4,7 @@
   <!-- Main Slider -->
   <div class="swiper-container main-slider swiper-arrow with-bg_white">
     <div class="swiper-wrapper">
-      @foreach (var slider in Model.Sliders)
+      @foreach (Slider slider in Model.Sliders)
       {
         <div class="swiper-slide animation-style-01">
           <div class="slide-inner style-1 bg-height" data-bg-image="assets/images/slider/bg/1-1.jpg">
@@ -26,7 +26,7 @@
                   <div class="inner-img">
                     <div class="scene fill">
                       <div class="expand-width" data-depth="0.2">
-                        <img src="~/assets/images/website-images//@slider.Image" alt="Inner Image" />
+                        <img src="~/Uploads/Slider/@slider.Image" alt="Inner Image" />
                       </div>
                     </div>
                   </div>

@@ -1,0 +1,98 @@
+@model List<Product>
+@{
+      int counter = 1;
+}
+<div class="container-fluid">
+      <!-- Page Heading -->
+      <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+      <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
+            For more information about DataTables, please visit the <a target="_blank"
+                  href="https://datatables.net">official DataTables documentation</a>.</p>
+
+      <!-- DataTales Example -->
+      <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                  <a asp-area="Admin" asp-controller="Product" asp-action="Create" class="btn btn-primary">Create</a>
+            </div>
+            <div class="card-body">
+                  <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                              <thead>
+                                    <tr>
+                                          <th>#</th>
+                                          <th>Id</th>
+                                          <th>Name</th>
+                                          <th>Description</th>
+                                          <th>Price</th>
+                                          <th>SKU</th>
+                                          <th>Categories</th>
+                                          <th>Tags</th>
+                                          <th>Is Deleted</th>
+                                          <th>Delete</th>
+                                          <th>Update</th>
+                                    </tr>
+                              </thead>
+                              <tbody>
+                                    @foreach (Product product in Model)
+                                    {
+                                          <tr>
+                                                <td>@counter</td>
+                                                <td>@product.Id</td>
+                                                <td>@product.Name</td>
+                                                <td>@product.Description</td>
+                                                <td>@product.Price</td>
+                                                <td>@product.SKU</td>
+                                                <td>
+                                                      @foreach (var category in product.Categories)
+                                                      {
+                                                            @category.Name
+                                                            <br />
+                                                      }
+                                                </td>
+                                                <td>
+                                                      @foreach (var tag in product.Tags)
+                                                      {
+                                                            @tag.Name
+                                                            <br />
+                                                      }
+                                                </td>
+                                                @if (product.IsDeleted)
+                                                {
+                                                      <td class="text-danger">Deleted</td>
+                                                }
+                                                else
+                                                {
+                                                      <td class="text-success">Active</td>
+                                                }
+                                                <td>
+                                                      @if (!product.IsDeleted)
+                                                      {
+                                                            <form method="post" asp-area="Admin" asp-controller="Product"
+                                                                  asp-action="Delete" asp-route-id="@product.Id">
+                                                                  <button type="submit" class="btn btn-danger">Delete</button>
+                                                            </form>
+                                                      }
+                                                      else
+                                                      {
+                                                            <form method="post" asp-area="Admin" asp-controller="Product"
+                                                                  asp-action="Restore" asp-route-id="@product.Id">
+                                                                  <button type="submit" class="btn btn-success">Restore</button>
+                                                            </form>
+                                                      }
+
+                                                </td>
+                                                <td>
+                                                      <a asp-area="Admin" asp-controller="Product" asp-action="Update"
+                                                            asp-route-id="@product.Id" class="btn btn-warning">Update</a>
+                                                </td>
+                                          </tr>
+                                          counter++;
+                                    }
+                              </tbody>
+                        </table>
+                  </div>
+            </div>
+      </div>
+
+</div>

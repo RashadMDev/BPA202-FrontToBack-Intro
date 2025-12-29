@@ -26,6 +26,8 @@
                                           <th>Description</th>
                                           <th>Price</th>
                                           <th>SKU</th>
+                                          <th>Primary Image</th>
+                                          <th>Other Images</th>
                                           <th>Categories</th>
                                           <th>Tags</th>
                                           <th>Is Deleted</th>
@@ -43,6 +45,25 @@
                                                 <td>@product.Description</td>
                                                 <td>@product.Price</td>
                                                 <td>@product.SKU</td>
+                                                <td>
+                                                      @if (product.Images is not null)
+                                                      {
+                                                            <img src="~/Uploads/Product/@product.Images.FirstOrDefault(i => i.IsPrimary)?.Url"
+                                                                  alt="" width="100" height="100">
+                                                      }
+                                                      else
+                                                      {
+                                                            <span>No Image</span>
+                                                      }
+                                                </td>
+                                                <td>
+                                                      @foreach (var image in product.Images.Where(i => !i.IsPrimary))
+                                                      {
+                                                            <img src="~/Uploads/Product/@image.Url" alt="" width="100"
+                                                                  height="100" />
+                                                            <br />
+                                                      }
+                                                </td>
                                                 <td>
                                                       @foreach (var category in product.Categories)
                                                       {

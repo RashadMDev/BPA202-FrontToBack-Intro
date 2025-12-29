@@ -1,9 +1,9 @@
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProniaFrontToBack.Areas.Admin.ViewModels.Product;
 using ProniaFrontToBack.DAL;
 using ProniaFrontToBack.Models;
+using ProniaFrontToBack.Utilities.ImageUpload;
 
 namespace ProniaFrontToBack.Areas.Admin.Controllers
 {
@@ -11,14 +11,17 @@ namespace ProniaFrontToBack.Areas.Admin.Controllers
     public class ProductController : Controller
     {
         AppDbContext _db;
-        public ProductController(AppDbContext db)
+        IWebHostEnvironment _env;
+        public ProductController(AppDbContext db, IWebHostEnvironment env)
         {
             _db = db;
+            _env = env;
         }
         #region Index
         public IActionResult Index()
         {
             List<Product> products = _db.Products
+            .Include(p => p.Images)
             .Include(c => c.Categories)
             .Include(t => t.Tags)
             .ToList();
@@ -51,6 +54,7 @@ namespace ProniaFrontToBack.Areas.Admin.Controllers
                 Price = productVM.Price,
                 Rating = productVM.Rating,
                 SKU = productVM.SKU,
+                Images = new List<Image>()
             };
             if (productVM.CategoryIds != null)
             {
@@ -64,6 +68,43 @@ namespace ProniaFrontToBack.Areas.Admin.Controllers
                     .Where(t => productVM.TagIds.Contains(t.Id))
                     .ToList();
             }
+
+            if (!productVM.PrimaryImage.ContentType.Contains("image/"))
+            {
+                ModelState.AddModelError("PrimaryImage", "File type must be image");
+                return View(productVM);
+            }
+            if (productVM.PrimaryImage.Length > 2 * 1024 * 1024)
+            {
+                ModelState.AddModelError("PrimaryImage", "File size must be less than 2MB");
+                return View(productVM);
+            }
+            var primaryImageFileName = productVM.PrimaryImage.SaveImage(_env, "Uploads/Product");
+            product.Images.Add(new Image()
+            {
+                Url = primaryImageFileName,
+                IsPrimary = true
+            });
+
+            foreach (var image in productVM.Images)
+            {
+                if (!image.ContentType.Contains("image/"))
+                {
+                    ModelState.AddModelError("Images", "File type must be image");
+                    return View(productVM);
+                }
+                if (image.Length > 2 * 1024 * 1024)
+                {
+                    ModelState.AddModelError("Images", "File size must be less than 2MB");
+                    return View(productVM);
+                }
+                var otherImageFileNames = image.SaveImage(_env, "Uploads/Product");
+                product.Images.Add(new Image()
+                {
+                    Url = otherImageFileNames,
+                });
+            }
+
             await _db.Products.AddAsync(product);
             await _db.SaveChangesAsync();
             return RedirectToAction("Index");
@@ -154,7 +195,7 @@ namespace ProniaFrontToBack.Areas.Admin.Controllers
                     .ToList();
             }
             await _db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            return View();
         }
 
         #endregion

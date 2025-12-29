@@ -2,7 +2,7 @@
 
 <div class="container">
       <h1>Create Product</h1>
-      <form asp-action="Create" method="post">
+      <form asp-action="Create" method="post" enctype="multipart/form-data">
             <div class="form-group">
                   <label asp-for="Name">Name</label>
                   <input asp-for="Name" type=" text" class="form-control" placeholder="Enter Name" id="Name">
@@ -42,6 +42,16 @@
                         asp-items="@(new SelectList(ViewBag.Tags, "Id", "Name"))">
                   </select>
                   <span asp-validation-for="TagIds" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                  <label asp-for="PrimaryImage">Primary Image</label>
+                  <input asp-for="PrimaryImage" type="file" class="form-control" id="PrimaryImage">
+                  <span asp-validation-for="PrimaryImage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                  <label asp-for="Images">Images</label>
+                  <input multiple="true" asp-for="Images" type="file" class="form-control" id="Images">
+                  <span asp-validation-for="Images" class="text-danger"></span>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
       </form>

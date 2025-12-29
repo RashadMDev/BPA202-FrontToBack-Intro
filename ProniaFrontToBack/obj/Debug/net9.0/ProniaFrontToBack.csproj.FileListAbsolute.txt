@@ -1936,3 +1936,5 @@
 /Users/rashad/Desktop/BPA202-FrontToBack-Intro/ProniaFrontToBack/obj/Debug/net9.0/compressed/sw0wv4ro1c-kumamd6os3.gz
 /Users/rashad/Desktop/BPA202-FrontToBack-Intro/ProniaFrontToBack/obj/Debug/net9.0/compressed/cdu613rxg2-7a5c0q56mb.gz
 /Users/rashad/Desktop/BPA202-FrontToBack-Intro/ProniaFrontToBack/obj/Debug/net9.0/compressed/woiow32xmj-h8sgcghvzv.gz
+/Users/rashad/Desktop/BPA202-FrontToBack-Intro/ProniaFrontToBack/obj/Debug/net9.0/compressed/7bc6ip21di-5ipweew5fc.gz
+/Users/rashad/Desktop/BPA202-FrontToBack-Intro/ProniaFrontToBack/obj/Debug/net9.0/compressed/d58ur558m9-5ipweew5fc.gz

@@ -142,6 +142,7 @@ namespace ProniaFrontToBack.Areas.Admin.Controllers
             ViewBag.Tags = await _db.Tags.ToListAsync();
 
             Product? product = await _db.Products
+                .Include(i => i.Images)
                 .Include(c => c.Categories)
                 .Include(t => t.Tags)
                 .FirstOrDefaultAsync(p => p.Id == id);
@@ -155,7 +156,13 @@ namespace ProniaFrontToBack.Areas.Admin.Controllers
                 Description = product.Description,
                 Price = product.Price,
                 CategoryIds = product.Categories.Select(c => c.Id).ToList(),
-                TagIds = product.Tags.Select(t => t.Id).ToList()
+                TagIds = product.Tags.Select(t => t.Id).ToList(),
+                OldImages = product.Images
+                .Select(i => new ProductImagesVM
+                {
+                    ImgURL = i.Url,
+                    IsPrimary = i.IsPrimary
+                }).ToList()
             };
             return View(productVM);
         }
@@ -168,14 +175,86 @@ namespace ProniaFrontToBack.Areas.Admin.Controllers
             ViewBag.Categories = await _db.Categories.ToListAsync();
             ViewBag.Tags = await _db.Tags.ToListAsync();
 
-            if (!ModelState.IsValid) return View();
+            if (!ModelState.IsValid) return View(productVM);
 
             Product? existProduct = await _db.Products
-               .Include(c => c.Categories)
-               .Include(t => t.Tags)
-               .FirstOrDefaultAsync(p => p.Id == productVM.Id);
+                .Include(i => i.Images)
+                .Include(c => c.Categories)
+                .Include(t => t.Tags)
+                .FirstOrDefaultAsync(p => p.Id == productVM.Id);
 
             if (existProduct is null) return View("Error");
+
+
+            if (productVM.PrimaryImage is not null)
+            {
+                if (!productVM.PrimaryImage.ContentType.Contains("image/"))
+                {
+                    ModelState.AddModelError("PrimaryImage", "File type must be image");
+                    return View(productVM);
+                }
+                if (productVM.PrimaryImage.Length > 2 * 1024 * 1024)
+                {
+                    ModelState.AddModelError("PrimaryImage", "File size must be less than 2MB");
+                    return View(productVM);
+                }
+                var primaryImage = existProduct.Images.FirstOrDefault(i => i.IsPrimary);
+                if (primaryImage != null)
+                {
+                    ImageExtension.DeleteImage(primaryImage.Url, _env, "Uploads/Product");
+                    _db.Images.Remove(primaryImage);
+                }
+                existProduct.Images.Add(new Image
+                {
+                    Url = productVM.PrimaryImage.SaveImage(_env, "Uploads/Product"),
+                    IsPrimary = true
+                }
+                );
+            }
+
+
+            if (productVM.ImagesUrls is not null)
+            {
+                foreach (var item in existProduct.Images.Where(i => !i.IsPrimary))
+                {
+                    if (!productVM.ImagesUrls.Any(i => i == item.Url))
+                    {
+                        ImageExtension.DeleteImage(item.Url, _env, "Uploads/Product");
+                        _db.Images.Remove(item);
+                    }
+                }
+            }
+            else
+            {
+                foreach (var item in existProduct.Images.Where(i => !i.IsPrimary))
+                {
+                    ImageExtension.DeleteImage(item.Url, _env, "Uploads/Product");
+                    _db.Images.Remove(item);
+                }
+            }
+
+
+            if (productVM.Images is not null)
+            {
+                foreach (var item in productVM.Images)
+                {
+                    if (!item.ContentType.Contains("image/"))
+                    {
+                        ModelState.AddModelError("Images", "File type must be image");
+                        return View(productVM);
+                    }
+                    if (item.Length > 2 * 1024 * 1024)
+                    {
+                        ModelState.AddModelError("Images", "File size must be less than 2MB");
+                        return View(productVM);
+                    }
+                    existProduct.Images.Add(new Image
+                    {
+                        Url = item.SaveImage(_env, "Uploads/Product"),
+                        IsPrimary = false
+                    });
+                }
+            }
 
             existProduct.Name = productVM.Name;
             existProduct.Description = productVM.Description;
@@ -195,10 +274,8 @@ namespace ProniaFrontToBack.Areas.Admin.Controllers
                     .ToList();
             }
             await _db.SaveChangesAsync();
-            return View();
+            return RedirectToAction("Index");
         }
-
         #endregion
-
     }
 }

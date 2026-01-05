@@ -1,6 +1,6 @@
 namespace ProniaFrontToBack.Areas.Admin.ViewModels.Product
 {
-    public class CreateProductVM
+    public record CreateProductVM
     {
         public string Name { get; set; }
         public string Description { get; set; }

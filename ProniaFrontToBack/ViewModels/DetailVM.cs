@@ -6,7 +6,7 @@ using ProniaFrontToBack.Models;
 
 namespace ProniaFrontToBack.ViewModels
 {
-    public class DetailVM
+    public record DetailVM
     {
         public List<Product> Products { get; set; }
         public Product Product { get; set; }

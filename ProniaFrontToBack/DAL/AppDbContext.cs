@@ -1,9 +1,10 @@
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using ProniaFrontToBack.Models;
 
 namespace ProniaFrontToBack.DAL
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<AppUser>
     {
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }

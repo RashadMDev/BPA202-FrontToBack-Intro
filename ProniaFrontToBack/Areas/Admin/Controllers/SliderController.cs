@@ -1,11 +1,9 @@
-using Microsoft.AspNetCore.Mvc;
-using ProniaFrontToBack.DAL;
-using ProniaFrontToBack.Models;
 using ProniaFrontToBack.Utilities.ImageUpload;
 
 namespace ProniaFrontToBack.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin, SuperAdmin")]
     public class SliderController : Controller
     {
         private readonly AppDbContext _db;

@@ -1,13 +1,10 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using ProniaFrontToBack.Areas.Admin.ViewModels.Product;
-using ProniaFrontToBack.DAL;
-using ProniaFrontToBack.Models;
 using ProniaFrontToBack.Utilities.ImageUpload;
 
 namespace ProniaFrontToBack.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin, SuperAdmin")]
     public class ProductController : Controller
     {
         AppDbContext _db;
@@ -112,6 +109,7 @@ namespace ProniaFrontToBack.Areas.Admin.Controllers
         #endregion
 
         #region Delete
+        [Authorize(Roles = "SuperAdmin")]
         [HttpPost]
         public async Task<IActionResult> Delete(int? id)
         {
@@ -124,6 +122,7 @@ namespace ProniaFrontToBack.Areas.Admin.Controllers
         #endregion
 
         #region Restore
+        [Authorize(Roles = "SuperAdmin")]
         [HttpPost]
         public async Task<IActionResult> Restore(int? id)
         {

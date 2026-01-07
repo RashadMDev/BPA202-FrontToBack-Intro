@@ -1,9 +1,3 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using ProniaFrontToBack.DAL;
-using ProniaFrontToBack.Models;
-using ProniaFrontToBack.ViewModels;
-
 namespace ProniaFrontToBack.Controllers
 {
       public class HomeController : Controller

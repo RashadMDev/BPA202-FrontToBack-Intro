@@ -14,7 +14,7 @@ public class Program
         builder.Services.AddIdentity<AppUser, IdentityRole>(opt =>
         {
             opt.User.RequireUniqueEmail = true;
-            opt.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._";
+            opt.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@";
             opt.Password.RequireDigit = true;
             opt.Password.RequireNonAlphanumeric = true;
             opt.Password.RequiredLength = 8;
@@ -29,9 +29,9 @@ public class Program
         app.UseStaticFiles();
 
         app.MapControllerRoute(
-                    name: "areas",
-                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
-                );
+            name: "areas",
+            pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+        );
 
         app.MapControllerRoute(
             name: "default",

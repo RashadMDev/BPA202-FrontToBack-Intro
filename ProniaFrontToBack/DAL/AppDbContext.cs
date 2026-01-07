@@ -1,6 +1,4 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-using ProniaFrontToBack.Models;
 
 namespace ProniaFrontToBack.DAL
 {

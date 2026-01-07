@@ -1,0 +1,20 @@
+@model ProniaFrontToBack.ViewModels.Account.AdminRegisterVM
+
+<div class="container mt-5">
+      <h2>Admin Register</h2>
+      <form method="post" asp-action="AdminRegister">
+            <div class="form-group">
+                  <label asp-for="Email">Email address</label>
+                  <input asp-for="Email" type="email" class="form-control" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+                  <label asp-for="Password">Password</label>
+                  <input asp-for="Password" type="password" class="form-control" placeholder="Password">
+            </div>
+            <div class="form-group">
+                  <label asp-for="ConfirmPassword">Confirm Password</label>
+                  <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="Confirm Password">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+</div>

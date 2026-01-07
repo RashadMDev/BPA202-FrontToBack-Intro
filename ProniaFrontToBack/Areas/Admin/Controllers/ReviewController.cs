@@ -1,12 +1,9 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using ProniaFrontToBack.Areas.Admin.ViewModels.Review;
-using ProniaFrontToBack.DAL;
-using ProniaFrontToBack.Models;
 
 namespace ProniaFrontToBack.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin, SuperAdmin")]
     public class ReviewController : Controller
     {
         AppDbContext _db;

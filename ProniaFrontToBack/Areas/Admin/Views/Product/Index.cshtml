@@ -78,6 +78,7 @@
                                                             <br />
                                                       }
                                                 </td>
+
                                                 @if (product.IsDeleted)
                                                 {
                                                       <td class="text-danger">Deleted</td>
@@ -86,23 +87,31 @@
                                                 {
                                                       <td class="text-success">Active</td>
                                                 }
-                                                <td>
-                                                      @if (!product.IsDeleted)
-                                                      {
-                                                            <form method="post" asp-area="Admin" asp-controller="Product"
-                                                                  asp-action="Delete" asp-route-id="@product.Id">
-                                                                  <button type="submit" class="btn btn-danger">Delete</button>
-                                                            </form>
-                                                      }
-                                                      else
-                                                      {
-                                                            <form method="post" asp-area="Admin" asp-controller="Product"
-                                                                  asp-action="Restore" asp-route-id="@product.Id">
-                                                                  <button type="submit" class="btn btn-success">Restore</button>
-                                                            </form>
-                                                      }
+                                                @if (@User.IsInRole("SuperAdmin"))
+                                                {
 
-                                                </td>
+                                                      <td>
+                                                            @if (!product.IsDeleted)
+                                                            {
+                                                                  <form method="post" asp-area="Admin" asp-controller="Product"
+                                                                        asp-action="Delete" asp-route-id="@product.Id">
+                                                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                                                  </form>
+                                                            }
+                                                            else
+                                                            {
+                                                                  <form method="post" asp-area="Admin" asp-controller="Product"
+                                                                        asp-action="Restore" asp-route-id="@product.Id">
+                                                                        <button type="submit" class="btn btn-success">Restore</button>
+                                                                  </form>
+                                                            }
+                                                      </td>
+                                                }
+                                                else
+                                                {
+                                                      <td class="text-danger">Access Denied</td>
+                                                }
+
                                                 <td>
                                                       <a asp-area="Admin" asp-controller="Product" asp-action="Update"
                                                             asp-route-id="@product.Id" class="btn btn-warning">Update</a>

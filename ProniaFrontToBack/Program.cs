@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using ProniaFrontToBack.DAL;
-using ProniaFrontToBack.Models;
+using ProniaFrontToBack.Utilities.Email;
+using ProniaFrontToBack.Interfaces;
+using ProniaFrontToBack.Implementations;
 
 namespace ProniaFrontToBack;
 
@@ -11,6 +11,8 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
         builder.Services.AddControllersWithViews();
+        builder.Services.AddTransient<IMailService, MailService>();
+        builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
         builder.Services.AddIdentity<AppUser, IdentityRole>(opt =>
         {
             opt.User.RequireUniqueEmail = true;
@@ -19,7 +21,8 @@ public class Program
             opt.Password.RequireNonAlphanumeric = true;
             opt.Password.RequiredLength = 8;
         })
-        .AddEntityFrameworkStores<AppDbContext>();
+        .AddEntityFrameworkStores<AppDbContext>()
+        .AddDefaultTokenProviders();
 
         builder.Services.AddDbContext<AppDbContext>(options =>
                     {

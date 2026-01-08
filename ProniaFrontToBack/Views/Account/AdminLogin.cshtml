@@ -1,14 +1,23 @@
-<div class="container mt-5">
-      <h2>Admin Login</h2>
-      <form method="post" asp-action="AdminLogin">
-            <div class="form-group">
-                  <label for="Email">Email address</label>
-                  <input name="Email" type="email" class="form-control" placeholder="Enter email">
+@model ProniaFrontToBack.ViewModels.Account.AdminLoginVM
+
+<div class="login-register-area">
+      <div class="container mt-5 mb-5">
+            <div class="login-form">
+                  <h2>Admin Login</h2>
+                  <form method="post" asp-action="AdminLogin">
+                        <div class="form-group">
+                              <label asp-for="Email">Email address</label>
+                              <input asp-for="Email" type="email" class="form-control" placeholder="Enter email">
+                              <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                              <label asp-for="Password">Password</label>
+                              <input asp-for="Password" type="password" class="form-control" placeholder="Password">
+                              <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
             </div>
-            <div class="form-group">
-                  <label for="Password">Password</label>
-                  <input name="Password" type="password" class="form-control" placeholder="Password">
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
+      </div>
 </div>

@@ -1939,3 +1939,6 @@
 /Users/rashad/Desktop/BPA202-FrontToBack-Intro/ProniaFrontToBack/obj/Debug/net9.0/compressed/7bc6ip21di-5ipweew5fc.gz
 /Users/rashad/Desktop/BPA202-FrontToBack-Intro/ProniaFrontToBack/obj/Debug/net9.0/compressed/d58ur558m9-5ipweew5fc.gz
 /Users/rashad/Desktop/BPA202-FrontToBack-Intro/ProniaFrontToBack/bin/Debug/net9.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+/Users/rashad/Desktop/BPA202-FrontToBack-Intro/ProniaFrontToBack/bin/Debug/net9.0/BouncyCastle.Cryptography.dll
+/Users/rashad/Desktop/BPA202-FrontToBack-Intro/ProniaFrontToBack/bin/Debug/net9.0/MailKit.dll
+/Users/rashad/Desktop/BPA202-FrontToBack-Intro/ProniaFrontToBack/bin/Debug/net9.0/MimeKit.dll

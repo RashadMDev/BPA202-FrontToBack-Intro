@@ -76,6 +76,18 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvU2xpZGVyL1VwZGF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/rashad/Desktop/BPA202-FrontToBack-Intro/ProniaFrontToBack/Areas/Admin/Views/SuperAdmin/Admins.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvU3VwZXJBZG1pbi9BZG1pbnMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/rashad/Desktop/BPA202-FrontToBack-Intro/ProniaFrontToBack/Areas/Admin/Views/SuperAdmin/CreateAdmin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvU3VwZXJBZG1pbi9DcmVhdGVBZG1pbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/rashad/Desktop/BPA202-FrontToBack-Intro/ProniaFrontToBack/Areas/Admin/Views/SuperAdmin/Users.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvU3VwZXJBZG1pbi9Vc2Vycy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/rashad/Desktop/BPA202-FrontToBack-Intro/ProniaFrontToBack/Areas/Admin/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -92,12 +104,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9BZG1pblJlZ2lzdGVyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/rashad/Desktop/BPA202-FrontToBack-Intro/ProniaFrontToBack/Views/Account/ForgottenPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9Gb3Jnb3R0ZW5QYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/rashad/Desktop/BPA202-FrontToBack-Intro/ProniaFrontToBack/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9Mb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/rashad/Desktop/BPA202-FrontToBack-Intro/ProniaFrontToBack/Views/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9SZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/rashad/Desktop/BPA202-FrontToBack-Intro/ProniaFrontToBack/Views/Account/ResetPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9SZXNldFBhc3N3b3JkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/rashad/Desktop/BPA202-FrontToBack-Intro/ProniaFrontToBack/Views/Home/Detail.cshtml]
